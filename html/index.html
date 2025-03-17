@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_body.css">
+    <title>Лабораторная 5</title>
+</head>
+<body>
+    <header>
+        <div class="h_blocks">
+            <div class="main">
+                <a href="index.html" class="index_button"><img src="img/icon.png" class="main_img" draggable="false"></a>
+            </div>
+
+            <div class="menu">
+                    <img src="img/лупа.png" id="lupa_manga" class="lupa" onclick="open_input(input_manga, x_manga, lupa_manga)">
+                    <input id="input_manga" type="text" class="display_n" style="width: 0px" oninput="search(input_manga, manga_res_a, manga_res_img)"> 
+                    <img src="img/крест.png" id="x_manga" class="display_n" onclick="close_input(input_manga, x_manga, lupa_manga)">
+                    <div class="s_result">
+                        <div class="ss_result">
+                            <img id="manga_res_img" style="padding: 0px 10px 0px 0px; height: 40px;" src="img/dragon.png">
+                            <a id="manga_res_a" style="color: black;">123</a>
+                        </div>
+                    </div>
+                    <a href="manga.html" class="menu_a" name="menu" id="1"><Font id="Fmenu1">Manga</Font></a>
+                    <a href="https://www.bestiary.us/cult/mifologija-narodov-vostochnoj-azii/dalnij-vostok/yaponskaja-mifologija" class="menu_a" name="menu" id="2"><Font id="Fmenu2">Bestiary</Font></a>
+            </div>
+        </div>
+    </header>
+    <div class="content_1">
+        <img src="img/elden_jp_1.jpg" style="height: 290px;">
+        <div class="text_1">
+            <p><font style="color: #fff; font-size: 22px;">Япония – одно из самых развитых государств мира с тысячелетней историей, самобытной культурой и традициями.
+                Это страна контрастов: возделывающей рис сельской глубинки и многомиллионного Токио, буддистских монахов и одержимых модой тинейджеров, торжественных религиозных ритуалов и шума игорных залов патинко, изысканной храмовой архитектуры и многоэтажных бетонных коробок.
+                Япония расположена в Восточной Азии, на 6852 островах. Самые крупные: Хонсю, Хоккайдо, Кюсю и Сикоку, составляющие 97% всей территории. Японский архипелаг берет свое начало от Охотского моря на севере и простирается далеко на юг до Восточно-Китайского моря и острова Тайвань. 
+                Несмотря на сравнительно небольшую площадь – 377 944 км², страна густо населена. По данным 2018 года, здесь проживает 126 225 000 человек. По этому показателю маленькая Япония уступает огромной России всего на 17,2 млн человек.
+            </p> 
+            <p></p> 
+            <p></p> 
+        </div>
+    </div>
+    <div class="content_2">
+        <div class="space_content">
+            <div class="mini_content">
+                <img src="img/fudji.jpg" class="mini_img">
+                <p><font style="color: rgb(0, 0, 0); font-size: 14px;">Фудзия́ма — действующий стратовулкан на японском острове Хонсю в 90 километрах к юго-западу от Токио. Высота вулкана — 3776 м</font></p>
+            </div>
+            <div class="mini_content">
+                <img src="img/shiroito.jpg" class="mini_img">
+                <p><font style="color: rgb(0, 0, 0); font-size: 14px;">Водопад Шираито считается одним из самых красивых водопадов в Японии, и  находится рядом с горой Фудзи и пятью озерами Фудзи.
+                </font></p>
+            </div>
+            <div class="mini_content">
+                <img src="img/Tokyo.jpg" class="mini_img">
+                <p><font style="color: rgb(0, 0, 0); font-size: 14px;">Столица и крупнейший город Японии, её административный, финансовый, промышленный и политический центр. Крупнейшая городская экономика мира.
+                </font></p>
+            </div>
+            <div class="mini_content"></div>
+        </div>
+    </div>
+
+    <hr>
+    <footer>
+        <div style="padding: 0 15px;"><Font style="font-size: 20px; color: white;"><p>Куликов Денис Александрович</p><p>denis_kulikov_a_2003@mail.ru</p></div>
+        <div style="padding: 0 15px;">16.11.2022</div>
+    </footer>
+    <script src="json.json"></script>
+    <script src="main.js"></script>
+
+
+</body>
+</html>

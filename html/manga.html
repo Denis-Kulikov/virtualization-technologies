@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_manga.css">
+    <title>Лабораторная 5</title>
+</head>
+<body>
+    <header>
+        <div class="h_blocks">
+            <div class="main">
+                <a href="index.html"><img src="img/icon.png" class="main_img" draggable="false"></a>
+            </div>
+
+            <div class="menu">
+                    <img src="img/лупа.png" id="lupa_manga" class="lupa" onclick="open_input(input_manga, x_manga, lupa_manga)">
+                    <input id="input_manga" type="text" class="display_n" style="width: 0px" oninput="search(input_manga, manga_res_name, manga_res_img, manga_res_a)"> 
+                    <img src="img/крест.png" id="x_manga" class="display_n" onclick="close_input(input_manga, x_manga, lupa_manga)">
+                    <div class="s_result">
+                        <div class="ss_result">
+                            <a id="manga_res_a" style="color: black; width: 100%; display: flex; flex-wrap: nowrap;">
+                                <img id="manga_res_img" style="padding: 0px 10px 0px 0px; height: 40px;" src="img/dragon.png">
+                                <font style="font-size: 24px;"><p id="manga_res_name"></p></font>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="manga.html" class="menu_a">Manga</a>
+                    <a href="https://www.bestiary.usч/cult/mifologija-narodov-vostochnoj-azii/dalnij-vostok/yaponskaja-mifologija" class="menu_a">Bestary</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="catalog">
+            <h1>Каталог</h1>
+            <hr>
+        </div>
+        <div class="content_manga" id="manga_list"></div>
+        <hr>
+        <footer>
+            <div style="padding: 0 15px;"><Font style="font-size: 20px; color: white;"><p>Куликов Денис Александрович</p><p>denis_kulikov_a_2003@mail.ru</p></div>
+            <div style="padding: 0 15px;">16.11.2022</div>
+        </footer>
+    </div>
+    
+
+    <script src="json.json"></script>
+    <script src="contant.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
