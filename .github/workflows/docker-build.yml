@@ -26,11 +26,13 @@ jobs:
 
       - name: Push Docker Image
         run: |
+          IMAGE_NAME="deniskulikov/virtualization-technologies"
           docker push "$IMAGE_NAME:${{ github.sha }}"
           docker push "$IMAGE_NAME:latest"
 
       - name: Clean up local Docker images
         if: always()
         run: |
+          IMAGE_NAME="deniskulikov/virtualization-technologies"
           docker rmi "$IMAGE_NAME:${{ github.sha }}" || true
           docker rmi "$IMAGE_NAME:latest" || true
