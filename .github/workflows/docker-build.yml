@@ -19,17 +19,23 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}:${{ github.sha }}"
-          docker build -t $IMAGE_NAME .
-          docker tag $IMAGE_NAME "ghcr.io/${{ github.repository }}:latest"
+          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
+          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
+          docker build -t "$IMAGE_NAME_LOWER:${{ github.sha }}" .
+          docker tag "$IMAGE_NAME_LOWER:${{ github.sha }}" "$IMAGE_NAME_LOWER:latest"
 
       - name: Push Docker Image
         run: |
-          docker push "ghcr.io/${{ github.repository }}:${{ github.sha }}"
-          docker push "ghcr.io/${{ github.repository }}:latest"
+          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
+          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
+          docker push "$IMAGE_NAME_LOWER:${{ github.sha }}"
+          docker push "$IMAGE_NAME_LOWER:latest"
 
       - name: Clean up local Docker images
         if: always()
         run: |
-          docker rmi "ghcr.io/${{ github.repository }}:${{ github.sha }}" || true
-          docker rmi "ghcr.io/${{ github.repository }}:latest" || true
+          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
+          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
+          docker rmi "$IMAGE_NAME_LOWER:${{ github.sha }}" || true
+          docker rmi "$IMAGE_NAME_LOWER:latest" || true
+
