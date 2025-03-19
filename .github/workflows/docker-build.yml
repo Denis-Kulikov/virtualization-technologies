@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Docker Build and Push to GitLab
 
 on:
   push:
@@ -14,28 +14,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Log in to GitLab Container Registry
+        run: |
+          echo "${{ secrets.CI_REGISTRY_PASSWORD }}" | docker login registry.gitlab.com -u "${{ secrets.CI_REGISTRY_USER }}" --password-stdin
 
       - name: Build Docker Image
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
-          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
-          docker build -t "$IMAGE_NAME_LOWER:${{ github.sha }}" .
-          docker tag "$IMAGE_NAME_LOWER:${{ github.sha }}" "$IMAGE_NAME_LOWER:latest"
+          IMAGE_NAME="registry.gitlab.com/<your-namespace>/<your-repository>"
+          docker build -t "$IMAGE_NAME:${{ github.sha }}" .
+          docker tag "$IMAGE_NAME:${{ github.sha }}" "$IMAGE_NAME:latest"
 
       - name: Push Docker Image
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
-          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
-          docker push "$IMAGE_NAME_LOWER:${{ github.sha }}"
-          docker push "$IMAGE_NAME_LOWER:latest"
+          docker push "$IMAGE_NAME:${{ github.sha }}"
+          docker push "$IMAGE_NAME:latest"
 
       - name: Clean up local Docker images
         if: always()
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}" 
-          IMAGE_NAME_LOWER=$(echo $IMAGE_NAME | tr '[:upper:]' '[:lower:]')
-          docker rmi "$IMAGE_NAME_LOWER:${{ github.sha }}" || true
-          docker rmi "$IMAGE_NAME_LOWER:latest" || true
-
+          docker rmi "$IMAGE_NAME:${{ github.sha }}" || true
+          docker rmi "$IMAGE_NAME:latest" || true
