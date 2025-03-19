@@ -1,6 +1,9 @@
+.git
 *.o
 *.log
 build/
 node_modules/
 __pycache__/
 *.tmp
+
+large_file
