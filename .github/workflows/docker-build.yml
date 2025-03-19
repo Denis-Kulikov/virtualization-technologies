@@ -1,0 +1,35 @@
+name: Docker Build and Push
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker Image
+        run: |
+          IMAGE_NAME="ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          docker build -t $IMAGE_NAME .
+          docker tag $IMAGE_NAME "ghcr.io/${{ github.repository }}:latest"
+
+      - name: Push Docker Image
+        run: |
+          docker push "ghcr.io/${{ github.repository }}:${{ github.sha }}"
+          docker push "ghcr.io/${{ github.repository }}:latest"
+
+      - name: Clean up local Docker images
+        if: always()
+        run: |
+          docker rmi "ghcr.io/${{ github.repository }}:${{ github.sha }}" || true
+          docker rmi "ghcr.io/${{ github.repository }}:latest" || true
