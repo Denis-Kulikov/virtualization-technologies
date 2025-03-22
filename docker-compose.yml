@@ -1,0 +1,23 @@
+services:
+  proxy:
+    image: lab3-proxy
+    ports:
+      - "8080:443"
+    networks:
+      - network-lab3
+    volumes:
+      - ./certs:/etc/nginx/certs
+
+  app1:
+    image: lab3-1
+    networks:
+      - network-lab3
+
+  app2:
+    image: lab3-2
+    networks:
+      - network-lab3
+
+networks:
+  network-lab3:
+    driver: bridge

@@ -1,9 +1,11 @@
+vtech-labs.pdf
 .git
+.github
+.gitlab-ci.yml
 *.o
 *.log
 build/
+build.sh
 node_modules/
 __pycache__/
 *.tmp
-
-large_file
